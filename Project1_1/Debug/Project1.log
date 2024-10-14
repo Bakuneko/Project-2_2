@@ -1,0 +1,6 @@
+﻿  Source.c
+D:\Прога\Lab 2\Project1\Source.c(20,21): warning C4244: функция: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\Прога\Lab 2\Project1\Source.c(33,21): warning C4244: функция: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\Прога\Lab 2\Project1\Source.c(13,20): warning C4101: end: неиспользованная локальная переменная
+D:\Прога\Lab 2\Project1\Source.c(13,13): warning C4101: start: неиспользованная локальная переменная
+  Project1.vcxproj -> D:\Прога\Lab 2\Project1\Debug\Project1.exe
