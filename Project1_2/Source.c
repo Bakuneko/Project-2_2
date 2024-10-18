@@ -3,6 +3,8 @@
 #include <time.h>
 #include <conio.h>
 #include <windows.h>
+
+#define SIZE 10000
 int main(void)
 {
     SetConsoleOutputCP(1251);
@@ -11,13 +13,30 @@ int main(void)
     setvbuf(stdout, NULL, _IONBF, 0);
 
     clock_t start, end;
-
+    double cpu_time_used;
+    int** a = (int**)malloc(SIZE * sizeof(int*));
+    int** b = (int**)malloc(SIZE * sizeof(int*));
+    int** c = (int**)malloc(SIZE * sizeof(int*));
+    
+    if (a == NULL || b == NULL || c == NULL) {
+        printf("Ошибка выделения памяти!\n");
+        return 1;
+    }
     int i = 0, j = 0, r;
-    int helping = 100;
-    int a[100][100], b[100][100], c[100][100], elem_c;
+    int helping = 10000;
+    int elem_c;
+    for (int i = 0; i < SIZE; i++) {
+        a[i] = (int*)malloc(SIZE * sizeof(int));
+        b[i] = (int*)malloc(SIZE * sizeof(int));
+        c[i] = (int*)malloc(SIZE * sizeof(int));
+    }
+    if (a[i] == NULL || b[i] == NULL || c[i] == NULL) {
+        printf("Ошибка выделения памяти в строке %d!\n", i);
+        return 1;
+    }
 
     long long op_count = 0; // счётчик операций
-
+    start = clock();
     srand(time(NULL));
     while (i < helping)
     {
@@ -61,6 +80,19 @@ int main(void)
         }
     }
 
+    for (int i = 0; i < SIZE; i++) {
+        free(a[i]);
+        free(b[i]);
+        free(c[i]);
+    }
+    free(a);
+    free(b);
+    free(c);
+
+    end = clock();
+    cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
+
+    printf("Время выполнения программы: %f секунд\n", cpu_time_used);
     printf("Кол-во операций: %lld\n", op_count);
 
     return 0;
